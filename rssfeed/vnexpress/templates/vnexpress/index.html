@@ -1,0 +1,25 @@
+{% extends "vnexpress/layout.html" %}
+
+{% block body %}
+    <h1> {{ message }}</h1>
+    <form action= {% url 'index' %} method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit"/>
+    </form>
+    
+    <ol>
+        {% for new in news %}
+                <li>
+                    <h3>{{ new.title }}</h3>
+                    <img src= {{ new.img }} width="300px" height="300px">
+                    <p> {{ new.description }}</p>
+                    <p>
+                        <a href={{ new.link }}> {{ new.link }} </a>
+                    </p>
+                </li> 
+        {% endfor %}
+            
+
+    </ol>
+{% endblock %}
